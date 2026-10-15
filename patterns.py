@@ -1,6 +1,4 @@
-"""Pattern printing
-Run: python patterns.py
-"""
+"""Pattern printing"""
 
 
 def right_triangle(n):
