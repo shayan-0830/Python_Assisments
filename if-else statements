@@ -1,0 +1,122 @@
+# 1. Simple if
+age = 18
+if age >= 18:
+    print("Eligible to vote")
+
+# 2. if-else
+num = 7
+if num % 2 == 0:
+    print("Even")
+else:
+    print("Odd")
+
+# 3. if-elif-else
+marks = 72
+if marks >= 90:
+    print("Grade A")
+elif marks >= 75:
+    print("Grade B")
+elif marks >= 60:
+    print("Grade C")
+elif marks >= 40:
+    print("Grade D")
+else:
+    print("Fail")
+
+# 4. Nested if
+age = 25
+has_id = True
+if age >= 18:
+    if has_id:
+        print("Entry allowed")
+    else:
+        print("ID required")
+else:
+    print("Underage")
+
+# 5. Logical operators (and, or, not)
+x = 10
+if x > 5 and x < 20:
+    print("x is between 5 and 20")
+
+if x < 5 or x > 8:
+    print("x is either less than 5 or greater than 8")
+
+if not x == 0:
+    print("x is not zero")
+
+# 6. Comparison operators
+a, b = 10, 20
+if a == b:
+    print("Equal")
+elif a != b:
+    print("Not equal")
+if a < b:
+    print("a is smaller")
+
+# 7. Ternary (one-line if-else)
+age = 20
+status = "Adult" if age >= 18 else "Minor"
+print(status)
+
+# 8. Membership check with in / not in
+fruits = ["apple", "banana", "mango"]
+if "apple" in fruits:
+    print("Apple is available")
+if "grape" not in fruits:
+    print("Grape is not available")
+
+# 9. Checking truthiness (empty / non-empty)
+name = ""
+if name:
+    print("Name entered")
+else:
+    print("Name is empty")
+
+# 10. Checking None
+value = None
+if value is None:
+    print("No value")
+
+# 11. Largest of three numbers
+a, b, c = 15, 42, 27
+if a >= b and a >= c:
+    print("Largest:", a)
+elif b >= a and b >= c:
+    print("Largest:", b)
+else:
+    print("Largest:", c)
+
+# 12. Leap year check
+year = 2024
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
+    print("Leap year")
+else:
+    print("Not a leap year")
+
+# 13. Using if inside a loop
+for i in range(1, 11):
+    if i % 2 == 0:
+        print(i, "is even")
+    else:
+        print(i, "is odd")
+
+# 14. Simple login check with user input
+username = input("Enter username: ")
+password = input("Enter password: ")
+if username == "admin" and password == "1234":
+    print("Login successful")
+else:
+    print("Invalid credentials")
+
+# 15. match-case (Python 3.10+)
+day = 3
+match day:
+    case 1:
+        print("Monday")
+    case 2:
+        print("Tuesday")
+    case 3:
+        print("Wednesday")
+    case _:
+        print("Other day")
