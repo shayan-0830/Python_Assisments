@@ -1,0 +1,24 @@
+#Constructor Overriding
+class Employee():
+    def __init__(self,Name):
+        self.Name=Name
+        print("Employee Ka Constructor Call Ho Gaya.")
+
+class Developer(Employee):
+    def __init__(self,Name,language):
+        super().__init__(Name) # Parent ka Constructor
+        self.language=language
+        print("Developer Ka Constructor Call Ho Gaya.")
+
+    def showDetails(self):
+        print("Employee Name: ",self.Name)
+        print("Language: ",self.language)
+
+d1=Developer("Amit","Python") #__init__() Child
+d1.showDetails()
+
+#issubclass()
+#isinstance()
+print(isinstance(d1,Developer))
+print(issubclass(Developer,Employee))
+print(issubclass(Employee,Developer))
