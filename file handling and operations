@@ -1,0 +1,149 @@
+# 1. Create / write a file (overwrites if it exists)
+f = open("demo.txt", "w")
+f.write("Hello, World!\n")
+f.write("Welcome to Python file handling.\n")
+f.close()
+
+# 2. Read the entire file
+f = open("demo.txt", "r")
+print(f.read())
+f.close()
+
+# 3. Using with (auto-closes the file, preferred way)
+with open("demo.txt", "r") as f:
+    print(f.read())
+
+# 4. Read a limited number of characters
+with open("demo.txt", "r") as f:
+    print(f.read(5))          # Hello
+
+# 5. Read one line at a time
+with open("demo.txt", "r") as f:
+    print(f.readline())
+    print(f.readline())
+
+# 6. Read all lines into a list
+with open("demo.txt", "r") as f:
+    lines = f.readlines()
+    print(lines)
+
+# 7. Loop through a file line by line (memory efficient)
+with open("demo.txt", "r") as f:
+    for line in f:
+        print(line.strip())
+
+# 8. Append to a file
+with open("demo.txt", "a") as f:
+    f.write("This line is appended.\n")
+
+# 9. Write multiple lines at once
+lines = ["Line 1\n", "Line 2\n", "Line 3\n"]
+with open("demo.txt", "w") as f:
+    f.writelines(lines)
+
+# 10. Read and write mode (r+)
+with open("demo.txt", "r+") as f:
+    print(f.read())
+    f.write("Added using r+\n")
+
+# 11. Create a file only if it doesn't exist (x mode)
+try:
+    with open("new.txt", "x") as f:
+        f.write("New file created")
+except FileExistsError:
+    print("File already exists")
+
+# 12. File pointer: tell() and seek()
+with open("demo.txt", "r") as f:
+    print(f.read(5))
+    print(f.tell())           # current position
+    f.seek(0)                 # go back to start
+    print(f.read(5))
+
+# 13. Count lines, words and characters
+with open("demo.txt", "r") as f:
+    text = f.read()
+    print("Characters:", len(text))
+    print("Words:", len(text.split()))
+    print("Lines:", len(text.splitlines()))
+
+# 14. Copy one file to another
+with open("demo.txt", "r") as src, open("copy.txt", "w") as dst:
+    dst.write(src.read())
+
+# 15. Search for a word in a file
+word = "Python"
+with open("demo.txt", "r") as f:
+    for num, line in enumerate(f, start=1):
+        if word in line:
+            print(f"Found on line {num}: {line.strip()}")
+
+# 16. Binary files (images, PDFs, etc.)
+with open("image.jpg", "rb") as f:
+    data = f.read()
+with open("image_copy.jpg", "wb") as f:
+    f.write(data)
+
+# 17. Check if a file exists, get its size, delete it
+import os
+
+if os.path.exists("demo.txt"):
+    print("File exists")
+    print("Size:", os.path.getsize("demo.txt"), "bytes")
+
+if os.path.exists("copy.txt"):
+    os.remove("copy.txt")
+    print("File deleted")
+
+# 18. Rename a file
+if os.path.exists("new.txt"):
+    os.rename("new.txt", "renamed.txt")
+
+# 19. Directory operations
+os.mkdir("my_folder")                 # create folder
+print(os.listdir("."))                # list files in current folder
+os.rmdir("my_folder")                 # remove empty folder
+
+# 20. Safe file reading with exception handling
+try:
+    with open("missing.txt", "r") as f:
+        print(f.read())
+except FileNotFoundError:
+    print("File not found")
+except PermissionError:
+    print("Permission denied")
+
+# 21. Working with CSV files
+import csv
+
+with open("students.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerow(["Name", "Marks"])
+    writer.writerow(["Shayan", 85])
+    writer.writerow(["Ali", 78])
+
+with open("students.csv", "r") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+
+# 22. Working with JSON files
+import json
+
+data = {"name": "Shayan", "course": "MCA"}
+
+with open("data.json", "w") as f:
+    json.dump(data, f, indent=4)
+
+with open("data.json", "r") as f:
+    loaded = json.load(f)
+    print(loaded)
+
+# 23. Working with pickle (store Python objects)
+import pickle
+
+with open("data.pkl", "wb") as f:
+    pickle.dump([1, 2, 3], f)
+
+with open("data.pkl", "rb") as f:
+    print(pickle.load(f))
