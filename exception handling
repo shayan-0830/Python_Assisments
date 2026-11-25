@@ -1,0 +1,168 @@
+# 1. Basic try-except
+try:
+    x = 10 / 0
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+# 2. Catching a specific error (ValueError)
+try:
+    num = int("abc")
+except ValueError:
+    print("Invalid number")
+
+# 3. Multiple except blocks
+try:
+    a = int(input("Enter a number: "))
+    print(10 / a)
+except ValueError:
+    print("Please enter a valid integer")
+except ZeroDivisionError:
+    print("Zero is not allowed")
+
+# 4. Catching multiple exceptions in one line
+try:
+    a = int(input("Enter a number: "))
+    print(10 / a)
+except (ValueError, ZeroDivisionError):
+    print("Invalid input or division by zero")
+
+# 5. Generic exception with the error message
+try:
+    result = 10 / 0
+except Exception as e:
+    print("Error occurred:", e)
+
+# 6. try-except-else (else runs only if no error occurred)
+try:
+    n = int("25")
+except ValueError:
+    print("Invalid number")
+else:
+    print("Converted successfully:", n)
+
+# 7. try-except-finally (finally always runs)
+try:
+    f = open("data.txt", "r")
+    print(f.read())
+except FileNotFoundError:
+    print("File not found")
+finally:
+    print("This always executes")
+
+# 8. Full structure
+try:
+    n = int(input("Enter a number: "))
+    print(100 / n)
+except ValueError:
+    print("Not a valid integer")
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+else:
+    print("No error occurred")
+finally:
+    print("Program finished")
+
+# 9. File handling with a safe close
+try:
+    with open("data.txt", "r") as f:
+        print(f.read())
+except FileNotFoundError:
+    print("File does not exist")
+except PermissionError:
+    print("No permission to read the file")
+
+# 10. Common built-in exceptions
+try:
+    lst = [1, 2, 3]
+    print(lst[5])
+except IndexError:
+    print("Index out of range")
+
+try:
+    d = {"a": 1}
+    print(d["b"])
+except KeyError:
+    print("Key not found")
+
+try:
+    print(undefined_var)
+except NameError:
+    print("Variable not defined")
+
+try:
+    print("5" + 5)
+except TypeError:
+    print("Cannot add string and integer")
+
+try:
+    import notamodule
+except ImportError:
+    print("Module not found")
+
+# 11. raise: manually raise an exception
+age = -5
+try:
+    if age < 0:
+        raise ValueError("Age cannot be negative")
+except ValueError as e:
+    print(e)
+
+# 12. Custom exception
+class InsufficientBalanceError(Exception):
+    pass
+
+balance = 500
+withdraw = 800
+try:
+    if withdraw > balance:
+        raise InsufficientBalanceError("Not enough balance")
+except InsufficientBalanceError as e:
+    print("Error:", e)
+
+# 13. Custom exception with extra data
+class InvalidAgeError(Exception):
+    def __init__(self, age, message="Age must be between 0 and 120"):
+        self.age = age
+        self.message = message
+        super().__init__(f"{message}. Given: {age}")
+
+try:
+    age = 150
+    if age < 0 or age > 120:
+        raise InvalidAgeError(age)
+except InvalidAgeError as e:
+    print(e)
+
+# 14. Nested try-except
+try:
+    try:
+        x = 10 / 0
+    except ZeroDivisionError:
+        print("Inner: division error")
+        raise            # re-raise to the outer block
+except Exception:
+    print("Outer: handled the re-raised error")
+
+# 15. Loop until valid input
+while True:
+    try:
+        num = int(input("Enter a number: "))
+        break
+    except ValueError:
+        print("Invalid input, try again")
+
+# 16. assert statement
+x = 5
+try:
+    assert x > 10, "x must be greater than 10"
+except AssertionError as e:
+    print("Assertion failed:", e)
+
+# 17. Exception chaining (raise ... from ...)
+try:
+    try:
+        int("abc")
+    except ValueError as e:
+        raise RuntimeError("Conversion failed") from e
+except RuntimeError as e:
+    print(e, "| Caused by:", e.__cause__)
