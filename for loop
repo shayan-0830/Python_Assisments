@@ -1,0 +1,39 @@
+# Over a list
+fruits = ["apple", "banana", "mango"]
+for fruit in fruits:
+    print(fruit)
+
+# Over a string
+for ch in "Python":
+    print(ch)
+
+# Using range(stop)
+for i in range(5):
+    print(i)          # 0 1 2 3 4
+
+# range(start, stop)
+for i in range(1, 6):
+    print(i)          # 1 2 3 4 5
+
+# range(start, stop, step)
+for i in range(0, 10, 2):
+    print(i)          # 0 2 4 6 8
+
+# Reverse counting
+for i in range(5, 0, -1):
+    print(i)          # 5 4 3 2 1
+
+# Using index and value
+for index, fruit in enumerate(fruits):
+    print(index, fruit)
+
+# Over a dictionary
+student = {"name": "Shayan", "course": "MCA"}
+for key, value in student.items():
+    print(key, value)
+
+# Over two lists together
+names = ["A", "B"]
+marks = [80, 90]
+for n, m in zip(names, marks):
+    print(n, m)
