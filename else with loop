@@ -1,0 +1,19 @@
+for i in range(5):
+    print(i)
+else:
+    print("Loop completed")
+
+# With break, else is skipped
+for i in range(5):
+    if i == 3:
+        break
+else:
+    print("This will not print")
+
+# while-else
+n = 1
+while n <= 3:
+    print(n)
+    n += 1
+else:
+    print("Done")
